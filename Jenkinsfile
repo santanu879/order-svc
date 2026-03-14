@@ -21,9 +21,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat """
-                echo Running Docker container...
-                docker stop orderservice || exit 0
-                docker rm orderservice || exit 0
+                echo Stopping old container if exists...
+                docker stop orderservice
+                docker rm orderservice
+                echo Running new container...
                 docker run -d --name orderservice -p 5001:8080 orderservice:latest
                 """
             }
