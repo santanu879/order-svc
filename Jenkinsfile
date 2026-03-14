@@ -13,7 +13,7 @@ pipeline {
             steps {
                 bat """
                 echo Building Docker image...
-                docker build -t orderservice:latest .
+                docker build -t orderservice:latest -f src/Production/Dockerfile src/Production
                 """
             }
         }
